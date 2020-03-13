@@ -16,10 +16,6 @@ let board = []; // array of rows, each row is array of cells  (board[y][x])
  */
 
 function makeBoard() {
-  // let x = new Array(WIDTH);
-  // for(let y = 0; y < HEIGHT; y++){
-  //     board.push(x) 
-  //   }
   for (let y = 0; y < HEIGHT; y++) {
     board.push(Array.from({ length: WIDTH }));
   }
@@ -44,7 +40,7 @@ function makeHtmlBoard() {
   htmlBoard.append(top);
 
   // TODO: add comment for this code
-  // Loop to great the table row elements based on height, and use a nested loop create table cells with the ID including it's position (HEIGHT, WIDTH) 
+  // Loop to create the table row elements based on height, and use a nested loop create table cells with the ID including it's position (HEIGHT, WIDTH) 
   for (let y = 0; y < HEIGHT; y++) {
     const row = document.createElement("tr");
     for (let x = 0; x < WIDTH; x++) {
@@ -59,24 +55,12 @@ function makeHtmlBoard() {
 /** findSpotForCol: given column x, return top empty y (null if filled) */
 
 function findSpotForCol(x) {
-  // get next spot in column (if none, ignore click)
-  // const y = findSpotForCol(x);
-  // if (y === null) {
-  //   return;
-  // }
-  // x = 0
   for(let y = HEIGHT - 1; y >=0; y--){
     if (!board[y][x]) {
       return y;
     }
   }
   return null;
-  // for(let y = 5; y > 0; y--){
-  //   let spot = document.getElementById(`${x}-${y}`);
-  //   console.log(document.getElementById(`${x}-${y}`))
-  //   console.log(spot.classList !== "piece player1")
-  //   if(spot.classList !== "piece player1") return y;
-  // }
 }
 
 /** placeInTable: update DOM to place piece into HTML table of board */
@@ -86,7 +70,6 @@ function placeInTable(y, x) {
   const div = document.createElement("div");
   const cell = document.getElementById(`${y}-${x}`);
   div.setAttribute("class", `piece player${currPlayer}`);
-  div.style.top = -50 * (y + 2);
   cell.append(div); 
 }
 
@@ -127,9 +110,7 @@ function handleClick(evt) {
   }
   // switch players
   // TODO: switch currPlayer 1 <-> 2
-  //currPlayer == 1 ? (currPlayer = 2) : (currPlayer = 1);
-  currPlayer = currPlayer === 1 ? 2 : 1;
-
+  currPlayer == 1 ? (currPlayer = 2) : (currPlayer = 1);
 }
 
 /** checkForWin: check board cell-by-cell for "does a win start here?" */
@@ -151,6 +132,7 @@ function checkForWin() {
   }
 
   // TODO: read and understand this code. Add comments to help you.
+  // Nested loops with all the possible ways to win. If one of the ways is true, then someone has won 
 
   for (let y = 0; y < HEIGHT; y++) {
     for (let x = 0; x < WIDTH; x++) {

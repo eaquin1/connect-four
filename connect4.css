@@ -1,4 +1,13 @@
 /* game board table */
+* {
+  text-align: center;
+  margin: auto;
+}
+
+h1 {
+  font-family: Arial, Helvetica, sans-serif;
+  margin: 25px;
+}
 
 #board td {
   width: 50px;
